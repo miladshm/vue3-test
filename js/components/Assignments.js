@@ -7,14 +7,14 @@ export default {
       <assignment-list title="In progress" :assignments="inProgress"></assignment-list>
       <assignment-list title="Completed" :assignments="completed"></assignment-list>
 
-      <assignment-create></assignment-create>
+      <assignment-create @add="add"></assignment-create>
       </section>`,
     data() {
         return {
             assignments: [
-                {name: "Finish project", complete: false, id: 1},
-                {name: "Read chapter 4", complete: false, id: 2},
-                {name: "Turn in homework", complete: false, id: 3},
+                {name: "Finish project", complete: false, id: 1, tag: 'work'},
+                {name: "Read chapter 4", complete: false, id: 2, tag: 'school'},
+                {name: "Turn in homework", complete: false, id: 3, tag: 'school'},
             ],
         }
     },
@@ -29,5 +29,14 @@ export default {
         inProgress() {
             return this.assignments.filter(a => !a.complete)
         },
+    },
+    methods: {
+        add(name) {
+            this.assignments.push({
+                name: name,
+                complete: false,
+                id: this.assignments.length + 1
+            })
+        }
     }
 }

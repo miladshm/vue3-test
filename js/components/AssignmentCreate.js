@@ -10,11 +10,14 @@ export default {
 
     methods: {
         add() {
-            this.$parent.assignments.push({
-                name: this.newAssignment,
-                complete: false,
-                id: this.$parent.assignments.length + 1
-            })
+            // this.$parent.assignments.push({
+            //     name: this.newAssignment,
+            //     complete: false,
+            //     id: this.$parent.assignments.length + 1
+            // })
+
+            this.$emit('add', this.newAssignment);
+
             this.newAssignment = '';
         }
     },
